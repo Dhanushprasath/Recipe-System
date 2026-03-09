@@ -1,0 +1,209 @@
+{
+  "info": {
+    "name": "Recipe & Nutrition System – Full API Collection",
+    "_postman_id": "recipe-full-collection-001",
+    "description": "Complete Postman collection for User + Admin + Nutrition + Recipe APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+
+    {
+      "name": "1️⃣ User Authentication",
+      "item": [
+        {
+          "name": "User Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John\",\n  \"email\": \"john@gmail.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/register"
+          }
+        },
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@gmail.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"email\": \"john@gmail.com\" }"
+            },
+            "url": "{{baseUrl}}/api/auth/forgot-password"
+          }
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"RESET_TOKEN\",\n  \"newPassword\": \"newpassword123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/reset-password"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "2️⃣ User Recipe APIs",
+      "item": [
+        {
+          "name": "Add Recipe",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Oats Salad\",\n  \"ingredients\": [\"Oats\", \"Tomato\"],\n  \"instructions\": \"Mix all\"\n}"
+            },
+            "url": "{{baseUrl}}/api/recipes"
+          }
+        },
+        {
+          "name": "Edit Recipe",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"title\": \"Updated Oats Salad\" }"
+            },
+            "url": "{{baseUrl}}/api/recipes/1"
+          }
+        },
+        {
+          "name": "Delete Own Recipe",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "url": "{{baseUrl}}/api/recipes/1"
+          }
+        },
+        {
+          "name": "View My Recipes",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "url": "{{baseUrl}}/api/recipes/my"
+          }
+        },
+        {
+          "name": "View Approved Recipes",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/recipes/approved"
+          }
+        },
+        {
+          "name": "Search Recipes",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/recipes/search?keyword=oats"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "3️⃣ Nutrition APIs",
+      "item": [
+        {
+          "name": "Calculate Calories",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"ingredients\": [\"Rice\", \"Egg\"] }"
+            },
+            "url": "{{baseUrl}}/api/nutrition/calculate"
+          }
+        },
+        {
+          "name": "Ingredient Nutrition",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/nutrition/ingredient/Rice"
+          }
+        },
+        {
+          "name": "Auto Nutrition",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"recipeId\": 1 }"
+            },
+            "url": "{{baseUrl}}/api/nutrition/auto"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "4️⃣ Comments & Reports (User)",
+      "item": [
+        {
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"comment\": \"Great recipe!\" }"
+            },
+            "url": "{{baseUrl}}/api/comments/recipe/1"
+          }
+        },
+        {
+          "name": "Edit Comment",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"comment\": \"Updated comment\" }"
+            },
+            "url": "{{baseUrl}}/api/comments/1"
+          }
+        },
+        {
+          "name": "Report Recipe",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"reason\": \"Spam content\" }"
+            },
+            "url": "{{baseUrl}}/api/reports/recipe/1"
+          }
+        }
+      ]
+    }
+
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "userToken", "value": "" },
+    { "key": "adminToken", "value": "" }
+  ]
+}
+

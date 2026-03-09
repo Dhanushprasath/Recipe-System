@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | Recipe Contribution System</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #020617, #1e293b);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e5e7eb;
+        }
+
+        /* ===== REGISTER CARD ===== */
+        .container {
+            width: 100%;
+            max-width: 460px;
+            background: linear-gradient(135deg, #020617, #1e293b);
+            padding: 50px 42px;
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            background: rgba(0, 212, 255, 0.25);
+            border-radius: 50%;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 35px;
+            color: #e5faff;
+            text-shadow: 0 4px 18px rgba(0, 212, 255, 0.4);
+        }
+
+        label {
+            display: block;
+            margin-top: 22px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #cbd5f5;
+        }
+
+        input, select {
+            width: 100%;
+            margin-top: 8px;
+            padding: 16px;
+            font-size: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: #020617;
+            color: #f1f5f9;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #00eaff;
+            box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.25);
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group span {
+            position: absolute;
+            top: 50%;
+            right: 14px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 32px;
+            padding: 18px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 16px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(90deg, #00d4ff, #00ffb3);
+            color: #022c22;
+            transition: all 0.35s ease;
+            box-shadow: 0 14px 40px rgba(0, 212, 255, 0.45);
+        }
+
+        button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 22px 60px rgba(0, 212, 255, 0.65);
+        }
+
+        #matchMessage, #emailError {
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        #matchMessage { font-weight: 600; }
+        #emailError { color: #ff6b6b; }
+
+        .link-container {
+            text-align: center;
+            margin-top: 28px;
+        }
+
+        .link-container a {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #00eaff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .link-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            h2 { font-size: 28px; }
+            input, select { font-size: 16px; padding: 14px; }
+            button { font-size: 18px; padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Create Account</h2>
+
+    <form id="registerForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Username" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <span id="emailError"></span>
+
+        <label for="role">Select Role</label>
+        <select id="role">
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+        </select>
+
+        <!-- <label for="password">Password</label>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password" required>
+            <span onclick="togglePassword('password')">👁️</span>
+        </div>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="input-group">
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <span onclick="togglePassword('confirmPassword')">👁️</span>
+        </div> -->
+        <label for="password">Password</label>
+<div class="input-group">
+    <input type="password" id="password" placeholder="Password" required>
+    <span class="eye-icon" onclick="togglePassword('password')">
+        <!-- Eye SVG (Show Password) -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+    </span>
+</div>
+
+<label for="confirmPassword">Confirm Password</label>
+<div class="input-group">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+    <span class="eye-icon" onclick="togglePassword('confirmPassword')">
+        <!-- Eye SVG (Show Password) -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+    </span>
+</div>
+
+
+        <div id="matchMessage"></div>
+
+        <button type="button" id="registerBtn">Register</button>
+    </form>
+
+    <div class="link-container">
+        Already have an account? <a href="login.html">Login here</a>
+    </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const message = document.getElementById("matchMessage");
+    const registerBtn = document.getElementById("registerBtn");
+    const emailError = document.getElementById("emailError");
+
+    // Password match checker
+    function checkPasswordMatch() {
+        if (!confirmPassword.value) {
+            message.textContent = "";
+            return;
+        }
+        if (password.value === confirmPassword.value) {
+            message.textContent = "✅ Passwords match";
+            message.style.color = "green";
+        } else {
+            message.textContent = "❌ Passwords do not match";
+            message.style.color = "red";
+        }
+    }
+    password.addEventListener("input", checkPasswordMatch);
+    confirmPassword.addEventListener("input", checkPasswordMatch);
+
+    // Toggle password visibility
+    window.togglePassword = function(id) {
+        const input = document.getElementById(id);
+        input.type = input.type === "password" ? "text" : "password";
+        span.innerHTML = isPassword
+        ? `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                   d="M3 3l18 18" />
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                   d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a10.055 10.055 0 012.319-3.519m1.462-1.438A9.958 9.958 0 0112 5c4.477 0 8.268 2.943 9.542 7a10.056 10.056 0 01-4.493 5.772"/>
+           </svg>`
+        : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                   d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+           </svg>`;
+};
+
+
+    // Gmail validation function
+    function isGmail(email) {
+        return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email);
+    }
+
+    // Register button click
+    registerBtn.addEventListener("click", async () => {
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const role = document.getElementById("role").value;
+
+        if (!username || !email || !password.value || !confirmPassword.value) {
+            alert("All fields are required");
+            return;
+        }
+
+        if (!isGmail(email)) {
+            emailError.innerText = "❌ Only Gmail addresses allowed (example@gmail.com)";
+            return;
+        } else {
+            emailError.innerText = "";
+        }
+
+        if (password.value !== confirmPassword.value) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        const registerRequest = {
+            username,
+            email,
+            password: password.value,
+            confirmPassword: confirmPassword.value,
+            role
+        };
+
+        try {
+            const data = await apiRequest("/auth/register", "POST", registerRequest);
+            alert("Registration Successful! Please login.");
+            window.location.href = "login.html";
+        } catch (err) {
+            console.error("Register Error:", err);
+            alert("Registration failed: " + err.message);
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>

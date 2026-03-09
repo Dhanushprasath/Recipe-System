@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Assistant</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body onload="requireAuth()">
+
+<nav class="navbar">
+    <div class="logo">🍲 RecipeApp</div>
+    <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="voice.html">Voice</a></li>
+    </ul>
+</nav>
+
+<section class="voice-container">
+    <h2>Voice Assistant</h2>
+
+    <!-- TEXT TO SPEECH -->
+    <div class="voice-card">
+        <h3>Text → Speech</h3>
+        <textarea id="ttsText" placeholder="Enter text"></textarea>
+
+        <select id="ttsLang">
+            <option value="en">English</option>
+            <option value="ta">Tamil</option>
+            <option value="hi">Hindi</option>
+        </select>
+
+        <button onclick="textToSpeech()">Convert</button>
+        <audio id="audioPlayer" controls></audio>
+    </div>
+
+    <hr>
+
+    <!-- SPEECH TO TEXT -->
+    <div class="voice-card">
+        <h3>Speech → Text</h3>
+
+        <input type="file" id="audioFile" accept="audio/*">
+        <select id="sttLang">
+            <option value="en">English</option>
+            <option value="ta">Tamil</option>
+            <option value="hi">Hindi</option>
+        </select>
+
+        <button onclick="speechToText()">Convert</button>
+        <textarea id="sttResult" placeholder="Result text"></textarea>
+    </div>
+</section>
+
+<script src="js/api.js"></script>
+<script src="js/voice.js"></script>
+</body>
+</html>

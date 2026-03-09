@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Contribution System</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========= RESET ========= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #020617;
+            color: #e5e7eb;
+        }
+
+        a { text-decoration: none; }
+
+        /* ========= HERO ========= */
+        .hero {
+            background: linear-gradient(135deg, #020617, #1e293b);
+            padding: 110px 20px 140px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 64px;          /* BIGGER */
+            font-weight: 900;
+            color: #e5faff;
+            margin-bottom: 30px;
+            text-shadow: 0 6px 22px rgba(0, 212, 255, 0.4);
+        }
+
+        .hero-text {
+            font-size: 26px;          /* BIGGER */
+            color: #cbd5f5;
+            max-width: 900px;
+            margin: 20px auto;
+            line-height: 1.9;
+        }
+
+        .btn-group {
+            margin-top: 55px;
+            display: flex;
+            justify-content: center;
+            gap: 26px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 46px;
+            border-radius: 16px;
+            font-size: 22px;          /* BIGGER */
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d4ff, #00ffb3);
+            color: #022c22;
+            cursor: pointer;
+            border: none;
+            transition: all 0.35s ease;
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 20px 55px rgba(0, 212, 255, 0.6);
+        }
+
+        /* ========= FEATURES ========= */
+        .features-wrapper {
+            background: #020617;
+            padding: 100px 20px 120px;
+        }
+
+        .features {
+            max-width: 1250px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 55px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #020617, #1e293b);
+            border-radius: 26px;
+            padding: 50px 42px;
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.85);
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 140px;
+            height: 140px;
+            background: rgba(0, 212, 255, 0.25);
+            border-radius: 50%;
+        }
+
+        .feature-card h3 {
+            font-size: 36px;          /* BIGGER */
+            font-weight: 800;
+            color: #00eaff;
+            margin-bottom: 30px;
+        }
+
+        .feature-card h3::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 5px;
+            margin-top: 10px;
+            background: #00eaff;
+            border-radius: 3px;
+        }
+
+        .feature-card ul {
+            list-style: none;
+        }
+
+        .feature-card ul li {
+            font-size: 24px;          /* BIGGER */
+            color: #f1f5f9;
+            margin-bottom: 18px;
+            padding-left: 34px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .feature-card ul li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #00ffb3;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        /* ========= FOOTER ========= */
+        footer {
+            background: #020617;
+            text-align: center;
+            padding: 30px;
+            font-size: 20px;          /* BIGGER */
+            color: #94a3b8;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ========= RESPONSIVE ========= */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .hero-text {
+                font-size: 18px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <h1 class="hero-title">Recipe & Nutrition Management System</h1>
+
+    <p class="hero-text">
+        Discover, share, and contribute your favorite recipes with the world.
+        This platform allows users and admins to collaborate, manage recipes,
+        and maintain nutrition-based food records.
+    </p>
+
+    <p class="hero-text">
+        Whether you are a home cook, fitness enthusiast, or admin managing content,
+        this system provides a powerful and user-friendly experience.
+    </p>
+
+    <div class="btn-group">
+        <a href="register.html" class="btn">Register</a>
+        <a href="login.html" class="btn">Login</a>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-wrapper">
+    <div class="features">
+
+        <div class="feature-card">
+            <h3>Admin Features</h3>
+            <ul>
+                <li>Manage users and platform activity</li>
+                <li>Create and maintain admin recipes</li>
+                <li>Approve or reject user-submitted recipes</li>
+                <li>View comprehensive recipe statistics including total, pending, approved, and rejected recipes.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h3>User Features</h3>
+            <ul>
+                <li>Add, edit, and delete personal recipes</li>
+                <li>Explore admin and community recipes</li>
+                <li>Nutrition-based recipe submission</li>
+                <li>Favorites, diet log, and tracking</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2025 Recipe & Nutrition Management System. All rights reserved.
+</footer>
+
+</body>
+</html>

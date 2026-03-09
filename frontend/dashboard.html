@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: #34495e;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar button {
+            background: #1abc9c;
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .sidebar button:hover {
+            background: #16a085;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background: #ecf0f1;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn-green { background: #2ecc71; }
+        .btn-orange { background: #e67e22; }
+
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+        }
+        label {
+    display: block;
+    margin-top: 12px;
+}
+
+textarea, input {
+    margin-bottom: 12px;
+    width: 100%;
+}
+.recipe-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.recipe-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.recipe-title {
+    margin: 0;
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+.recipe-date {
+    margin: 5px 0 12px;
+    color: #777;
+    font-size: 14px;
+}
+
+.recipe-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.recipe-actions .btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn.view {
+    background: #3498db;
+    color: white;
+}
+
+.btn.edit {
+    background: #f39c12;
+    color: white;
+}
+.btn.comment { 
+    background-color: #2ecc71;
+ } 
+ .status {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.status.approved {
+    color: #155724;
+    background-color: #d4edda;
+}
+
+.status.pending {
+    color: #856404;
+    background-color: #fff3cd;
+}
+
+.status.rejected {
+    color: #721c24;
+    background-color: #f8d7da;
+}
+
+
+.btn.delete {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+/* ===============================
+   USER PROFILE – DASHBOARD
+================================ */
+
+.profile-container {
+    max-width: 600px;
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    margin: 20px auto;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.profile-container h2 {
+    margin-bottom: 16px;
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+}
+
+.profile-container p {
+    font-size: 15px;
+    margin: 8px 0;
+    color: #555;
+}
+
+.profile-container p b {
+    color: #222;
+}
+
+.profile-container h3 {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #444;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
+}
+
+/* ===============================
+   HEALTH INFO STYLING
+================================ */
+
+.health-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.health-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.health-card span {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 6px;
+    color: #2c7be5;
+}
+
+.health-card small {
+    font-size: 13px;
+    color: #777;
+}
+.profile-card {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.profile-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.profile-field label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
+}
+
+.profile-field input,
+.profile-field select {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 45px; /* same height for all fields */
+}
+
+.profile-field input:disabled,
+.profile-field select:disabled {
+    background-color: #f5f5f5;
+    color: #555;
+}
+
+.profile-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.btn-primary, .btn-success {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.btn-success {
+    background-color: #10b981;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+}
+
+.btn-success:hover {
+    background-color: #059669;
+}
+
+.warning {
+    color: #b91c1c;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+/* ===============================
+   BMI STATUS COLORS
+================================ */
+
+.bmi-underweight {
+    color: #f0ad4e;
+}
+
+.bmi-normal {
+    color: #28a745;
+}
+
+.bmi-overweight {
+    color: #ffc107;
+}
+
+.bmi-obese {
+    color: #dc3545;
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+.dashboard-menu {
+    margin-bottom: 20px;
+}
+
+.dashboard-menu button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.dashboard-menu button:hover {
+    background-color: #16a085;
+    transform: scale(1.05);
+}
+
+  .dashboard-menu {
+    margin-bottom: 20px;
+  }
+  .dashboard-menu button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  .diet-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .diet-table th, .diet-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  #dietFormMsg {
+    margin-top: 10px;
+    color: green;
+  }
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h2>Welcome, <span id="username">User</span></h2>
+    <a href="#" class="logout-btn" id="btn-logout">Logout</a>
+</header>
+
+<div class="dashboard">
+
+
+
+    <aside class="sidebar">
+       <button id="btn-my-recipes">My Recipes</button>
+        <button id="btn-add-recipe">Add Recipe</button>
+        <button id="btn-other-recipes">View Other's Recipes</button>
+        <button id="btn-favorites">Favorites</button>
+        <button id="btn-dietlog">Diet Log</button>
+        <button id="btn-profile">Profile</button>
+         
+</aside>
+
+    <!-- <main class="main-content" id="dashboard-content">
+        <p>Select a section from the menu</p>
+    </main>
+     -->
+    <main class="main-content">
+        <!-- Submenu for diet logs or other sections -->
+        <div id="dashboardMenu" class="dashboardMenu"></div>       
+
+        <!-- Actual content -->
+        <div id="dashboardcontent">
+            <p>Select a section from the menu</p>
+        </div>
+    </main>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

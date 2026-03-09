@@ -1,0 +1,157 @@
+{
+  "info": {
+    "name": "Admin API Collection",
+    "_postman_id": "admin-collection-002",
+    "description": "Complete Postman collection for AdminController and Voice APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/users", "host": ["{{baseUrl}}"], "path": ["api","admin","users"] }
+      }
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/users/1", "host": ["{{baseUrl}}"], "path": ["api","admin","users","1"] }
+      }
+    },
+    {
+      "name": "Ban User",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/users/1/ban", "host": ["{{baseUrl}}"], "path": ["api","admin","users","1","ban"] }
+      }
+    },
+
+    {
+      "name": "Get All Recipes",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/recipes", "host": ["{{baseUrl}}"], "path": ["api","admin","recipes"] }
+      }
+    },
+    {
+      "name": "Delete Recipe",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/recipes/1", "host": ["{{baseUrl}}"], "path": ["api","admin","recipes","1"] }
+      }
+    },
+    {
+      "name": "Approve Recipe",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/recipes/1/approve", "host": ["{{baseUrl}}"], "path": ["api","admin","recipes","1","approve"] }
+      }
+    },
+    {
+      "name": "Reject Recipe",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/recipes/1/reject", "host": ["{{baseUrl}}"], "path": ["api","admin","recipes","1","reject"] }
+      }
+    },
+
+    {
+      "name": "Get System Stats",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/stats", "host": ["{{baseUrl}}"], "path": ["api","admin","stats"] }
+      }
+    },
+
+    {
+      "name": "Get All Comments",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/comments", "host": ["{{baseUrl}}"], "path": ["api","admin","comments"] }
+      }
+    },
+    {
+      "name": "Delete Comment",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/comments/1", "host": ["{{baseUrl}}"], "path": ["api","admin","comments","1"] }
+      }
+    },
+
+    {
+      "name": "Text → Speech",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "text", "value": "Hello welcome to recipe app", "type": "text" },
+            { "key": "lang", "value": "en-US", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/voice/text-to-speech",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "voice", "text-to-speech"]
+        }
+      }
+    },
+
+    {
+      "name": "Speech → Text",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "file", "type": "file", "src": "" },
+            { "key": "lang", "value": "en-US", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/voice/speech-to-text",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "voice", "speech-to-text"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "adminToken", "value": "" }
+  ]
+}
