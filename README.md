@@ -31,7 +31,7 @@ Statistics Dashboard: View total users, recipe submissions, approvals, and overa
 
 ## Technology Stack
 Frontend: HTML, CSS, JavaScript  
-Backend: Java with Spring Boot  
+Backend: Java (Spring Boot)  
 Database: SQL/MySQL  
 API Integration: USDA Nutrition API  
 
