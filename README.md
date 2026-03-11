@@ -9,7 +9,7 @@ Frontend: HTML, CSS, JavaScript
 Backend: Java (Spring Boot)  
 Database: SQL/MySQL  
 APIs: USDA Nutrition API for nutrition data  
-Local AI Model: Ollama Gemma 3.1B for ingredient and description extraction  
+
 
 ## Features
 
