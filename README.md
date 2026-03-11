@@ -34,6 +34,4 @@ Frontend: HTML, CSS, JavaScript
 Backend: Java with Spring Boot  
 Database: SQL/MySQL  
 API Integration: USDA Nutrition API  
-AI Model: Ollama Gemma 3.1B (local deployment)  
-Optional Tools: Lombok, Maven for dependency management  
 
